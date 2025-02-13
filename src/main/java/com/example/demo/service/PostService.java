@@ -1,0 +1,22 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import com.example.demo.model.Post;
+
+@Service
+public class PostService {
+
+    // Метод для получения списка всех постов
+    public List<Post> listAllPosts() {
+        List<Post> posts = new ArrayList<>();
+
+        // Добавление трех постов с текстами
+        posts.add(new Post("Первый пост"));
+        posts.add(new Post("Второй пост"));
+        posts.add(new Post("Третий пост"));
+
+        return posts;
+    }
+}
