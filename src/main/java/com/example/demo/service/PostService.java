@@ -9,6 +9,7 @@ import com.example.demo.model.Post;
 public class PostService {
 
     public List<Post> listAllPosts() {
+
         List<Post> posts = new ArrayList<>();
 
         posts.add(new Post("Первый пост"));
