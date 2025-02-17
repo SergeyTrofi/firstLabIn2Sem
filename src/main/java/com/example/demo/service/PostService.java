@@ -1,32 +1,30 @@
 package com.example.demo.service;
 
+import com.example.demo.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import com.example.demo.model.Post;
 
 @Service
 public class PostService {
+    private List<Post> posts = new ArrayList<>();
 
-    // Поле для хранения постов
-    private List<Post> posts;
+    @Autowired
+    PostRepository postRepository;
 
-    // Блок инициализации
-    public PostService() {
-        posts = new ArrayList<>();
-        posts.add(new Post("Первый пост"));
-        posts.add(new Post("Второй пост"));
-        posts.add(new Post("Третий пост"));
-    }
-
-    // Метод для получения всех постов
     public List<Post> listAllPosts() {
-        return posts;
+        return StreamSupport.stream(postRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
-
-    public void create(String text) {
-        posts.add(new Post(text));
+    public void create(final String text) {
+        Post post = new Post(text);
+        posts.add(post);
+        postRepository.save(post);
     }
 }

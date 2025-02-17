@@ -22,8 +22,8 @@
             </div>
             <div class="col-md-1">
                 <button class="btn btn-sm btn-secondary like"
+                        th:attr="data-post-id=${post.id}"
                         th:text="${post.likes + ' ❤'}">0 ❤
-                    th:attr="data-post-id=${post.id}"
                 </button>
             </div>
             <div class="col-md-12">
